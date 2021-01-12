@@ -14,5 +14,30 @@
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="e2etests\cypress.json" />
+    <None Include="e2etests\cypress\fixtures\example.json" />
+    <None Include="e2etests\cypress\integration\examples\actions.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\aliasing.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\assertions.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\connectors.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\cookies.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\cypress_api.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\files.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\local_storage.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\location.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\misc.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\navigation.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\network_requests.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\querying.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\spies_stubs_clocks.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\traversal.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\utilities.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\viewport.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\waiting.spec.js" />
+    <None Include="e2etests\cypress\integration\examples\window.spec.js" />
+    <None Include="e2etests\cypress\integration\projectTest.spec.js" />
+    <None Include="e2etests\cypress\plugins\index.js" />
+    <None Include="e2etests\cypress\support\commands.js" />
+    <None Include="e2etests\cypress\support\index.js" />
   </ItemGroup>
 </Project>
