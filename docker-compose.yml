@@ -1,0 +1,49 @@
+version: '3.4'
+
+services:
+  appclient:
+    image: ${DOCKER_REGISTRY-}appclient
+    ports:
+      - "80:80"
+    depends_on:
+      - blog
+      - identity
+    build:
+      context: .
+      dockerfile: AppClient/Dockerfile
+
+  blogdb:
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
+    environment:
+        ACCEPT_EULA: "Y"
+        SA_PASSWORD: "AVerySecure1dentityPassw0rd!"
+    ports:
+      - "1433:1433" 
+
+  blog:
+    image: ${DOCKER_REGISTRY-}blog
+    ports:
+      - "6001:80" 
+    build:
+      context: .
+      dockerfile: Blog/Dockerfile
+    depends_on:
+      - blogdb
+
+  identitydb:
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
+    environment:
+        ACCEPT_EULA: "Y"
+        SA_PASSWORD: "AVerySecure1dentityPassw0rd!"
+    ports:
+      - "1434:1434" 
+
+  identity:
+    image: ${DOCKER_REGISTRY-}identity
+    ports:
+      - "6002:80" 
+    build:
+      context: .
+      dockerfile: Identity/Dockerfile
+    depends_on:
+      - identitydb

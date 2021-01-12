@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogposts</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container h-100">
+        <button id="add-new-blogpost-button" onclick="addNewBlogpost()" class="btn btn-primary"><i class="fa fa-plus fa-lg"></i>&nbsp; Write new</button>
+        <form id="create-blog-form" style="display:none" onsubmit="createBlogpost()">
+            <div class="form-group">
+                <label for="title">Blog Title:</label>
+                <input type="text" class="form-control" id="title" placeholder="Title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="text">Blog Text:</label>
+                <textarea class="form-control" id="text" placeholder="Text" name="text" rows="10" required></textarea>
+            </div>
+            <input type="hidden" readonly id="author" name="author" value="" />
+            <input class="btn btn-success" type="submit" value="Submit blogpost" />
+            <button class="btn btn-danger" onclick="closeBlogForm()">Cancel</button>
+        </form>
+        <h1>Latest blogposts</h1>
+        <div class="table responsive">
+            <table class="table">
+                <tbody id="blogposts"></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="blogscript.js"></script>
+</body>
+</html>
