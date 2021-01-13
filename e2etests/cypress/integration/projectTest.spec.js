@@ -58,7 +58,7 @@ describe('Test suite', () =>
     });
 
        
-    it.only('Create a new blogpost', () => {
+    it('Create a new blogpost', () => {
         cy.login('Admin', 'Admin');
 
         cy.request('http://localhost:6001/api/Blogposts/count')
@@ -85,4 +85,27 @@ describe('Test suite', () =>
         });
 
     });
+
+    it('Check if cancel button removes input', () => {
+        cy.login('Admin', 'Admin');
+
+        cy.get('#add-new-blogpost-button')
+            .click();
+
+        cy.get('#title')
+            .type('Text to be removed');
+
+        cy.get('#text')
+            .type('Text to be removed');
+
+        cy.get('#cancel-button')
+            .click();
+
+        cy.get('#title')
+            .should('have.value', '');
+
+        cy.get('#text')
+            .should('have.value', '');
+      
+    })
 })
