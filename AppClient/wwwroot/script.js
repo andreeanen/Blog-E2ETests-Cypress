@@ -8,7 +8,6 @@
 
     fetch(endpoint)
         .then(function (response) {
-            console.log(response);
             if (response.ok) {
                 return response.json();
             }
@@ -17,7 +16,7 @@
             }
         })
         .then(function (data) {
-            console.log(data);
+           
             document.getElementById('info').innerHTML = `${data.username} is logged in.`;
             localStorage.setItem("usernameLogedIn", data.username);
             localStorage.setItem("userStatus", data.userStatus);

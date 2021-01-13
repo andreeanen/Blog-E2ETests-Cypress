@@ -6,6 +6,9 @@ beforeEach(() => {
 
 describe('Test suite', () => 
 {
+    let blogpostsCountBefore = 0;
+    let blogpostsCountAfter = 0;
+
      it('Login as User', () => {
         cy.get('#username')
           .type('User');
@@ -54,12 +57,15 @@ describe('Test suite', () =>
           .should('not.be.visible');
     });
 
-    it('Write a new blogpost', () => {
+       
+    it.only('Create a new blogpost', () => {
         cy.login('Admin', 'Admin');
 
-        cy.request('get', 'http://localhost:6001/api/Blogposts')
-            ;
-
+        cy.request('http://localhost:6001/api/Blogposts/count')
+            .then((response) => {
+            blogpostsCountBefore = response.body;
+        });
+                   
         cy.get('#add-new-blogpost-button')
           .click();
 
@@ -70,6 +76,13 @@ describe('Test suite', () =>
           .type('New blog text...');
 
         cy.get('#submit-blogpost-button')
-          .click();
+            .click();
+
+        cy.request('http://localhost:6001/api/Blogposts/count')
+            .then((response) => {
+            blogpostsCountAfter = response.body;
+            cy.expect(blogpostsCountAfter).to.eq(blogpostsCountBefore + 1);
+        });
+
     });
 })

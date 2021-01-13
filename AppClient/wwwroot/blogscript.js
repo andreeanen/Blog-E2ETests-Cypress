@@ -6,7 +6,6 @@ const endpoint = 'http://localhost:6001/api/Blogposts';
 function getBlogPosts() {
     fetch(endpoint)
         .then(function (response) {
-            console.log(response);
             if (response.ok) {
                 return response.json();
             }
@@ -15,7 +14,6 @@ function getBlogPosts() {
             }
         })
         .then(function (data) {
-            console.log(data);
             displayBlogs(data);
         })
         .catch(function (error) {
