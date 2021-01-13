@@ -58,7 +58,7 @@ describe('Test suite', () =>
     });
 
        
-    it.only('Create a new blogpost', () => {
+    it('Create a new blogpost', () => {
         cy.login('Admin', 'Admin');
 
         cy.request('http://localhost:6001/api/Blogposts/count')
