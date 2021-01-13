@@ -58,7 +58,7 @@ describe('Test suite', () =>
     });
 
        
-    it('Create a new blogpost', () => {
+    it.only('Create a new blogpost', () => {
         cy.login('Admin', 'Admin');
 
         cy.request('http://localhost:6001/api/Blogposts/count')
@@ -83,6 +83,8 @@ describe('Test suite', () =>
             blogpostsCountAfter = response.body;
             cy.expect(blogpostsCountAfter).to.eq(blogpostsCountBefore + 1);
         });
+
+        cy.request('delete', 'http://localhost:6001/api/Blogposts');
 
     });
 
