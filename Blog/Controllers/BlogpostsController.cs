@@ -50,5 +50,21 @@ namespace Blog.Controllers
 
             return Created("GetBlogposts", newBlogpost);
         }
+
+        [HttpDelete]
+        public IActionResult DeleteBlogpost()
+        {
+            var latestBlogpost = _context.Blogposts.OrderByDescending(b => b.DateTime).FirstOrDefault();
+
+            if (latestBlogpost is null)
+            {
+                return NotFound();
+            }
+
+            _context.Blogposts.Remove(latestBlogpost);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
     }
 }
