@@ -4,6 +4,12 @@
 
 ### Laboration 5: End-to-endtestning
 
+#### Instruktioner
+* Kör solutionen med docker-compose
+* Navigera till mappen e2etests i terminalen 
+* Kör cypress open kommando i terminalen
+* Kör projectTest.spec.js filen från integration mappen
+
 #### Introduktion och syfte
 Målet är att bredda synen på vad som är möjligt att automatisera i testväg. Att skapa ett
 praktiskt end-to-end-test för en enkel webbapplikation.
