@@ -77,6 +77,42 @@ namespace Tests
                 var actualResult = service.CreateBlog(newBlog);
                 Assert.IsInstanceOfType(actualResult, typeof(CreatedResult));
             }
-        
+
+        [TestMethod]
+        public void GetNumberOfBlogposts_WhenCalled_ReturnsBlogpostsCount()
+        {
+            var data = new List<Blogpost>
+            {
+                new Blogpost
+                {
+                    Author = "Admin",
+                    Title = "Blog title 1",
+                    DateTime = DateTime.Now,
+                    Text = "Lorem Ipsum Blog Text 1"
+                },
+                new Blogpost
+                {
+                    Author = "Admin",
+                    Title = "Blog title 2",
+                    DateTime = DateTime.Now,
+                    Text = "Lorem Ipsum Blog Text 2"
+                },
+            }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Blogpost>>();
+            mockSet.As<IQueryable<Blogpost>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Blogpost>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Blogpost>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Blogpost>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+
+            var mockContext = new Mock<BlogpostContext>();
+            mockContext.Setup(c => c.Blogposts).Returns(mockSet.Object);
+           
+            var service = new BlogpostsController(mockContext.Object);
+            var actualResult = service.GetNumberOfBlogposts();
+            var expectedResult = data.Count();
+            Assert.AreEqual(actualResult, expectedResult);
+        }
+
     }
 }

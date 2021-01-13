@@ -27,6 +27,13 @@ namespace Blog.Controllers
             return Ok(blogposts);
         }
 
+        [HttpGet("count")]
+        public int GetNumberOfBlogposts()
+        {
+            var blogposts = _context.Blogposts.OrderByDescending(b => b.DateTime).ToList();
+            return blogposts.Count;
+        }
+
         [HttpPost]
         public IActionResult CreateBlog([FromBody] BlogpostCreate blogpostCreate)
         {

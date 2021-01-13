@@ -30,6 +30,7 @@ function displayBlogs(data) {
 
     data.forEach(item => {
         let titleRow = tBody.insertRow();
+        titleRow.className = "blogpost-row";
         let titleCell = titleRow.insertCell(0);
         let title = document.createTextNode(item.title);
         titleCell.appendChild(title);

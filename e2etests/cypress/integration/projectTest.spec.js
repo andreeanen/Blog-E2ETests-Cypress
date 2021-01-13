@@ -6,18 +6,14 @@ beforeEach(() => {
 
 describe('Test suite', () => 
 {
-    it('Test that localhost is accesible', () => {
-        cy.visit("http://localhost");
-    })
-
-    it('Login as User', () => {
+     it('Login as User', () => {
         cy.get('#username')
           .type('User');
 
         cy.get('#password')
           .type('User');
 
-        cy.get('.btn')
+        cy.get('#login-button')
           .click();
 
         cy.location('pathname')
@@ -41,7 +37,7 @@ describe('Test suite', () =>
         cy.get('#password')
           .type('Admin');
 
-        cy.get('.btn')
+        cy.get('#login-button')
           .click();
 
         cy.location('pathname')
@@ -61,6 +57,9 @@ describe('Test suite', () =>
     it('Write a new blogpost', () => {
         cy.login('Admin', 'Admin');
 
+        cy.request('get', 'http://localhost:6001/api/Blogposts')
+            ;
+
         cy.get('#add-new-blogpost-button')
           .click();
 
@@ -70,7 +69,7 @@ describe('Test suite', () =>
         cy.get('#text')
           .type('New blog text...');
 
-        cy.get('.btn-success')
+        cy.get('#submit-blogpost-button')
           .click();
     });
 })
